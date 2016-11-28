@@ -33,10 +33,15 @@ gem 'jbuilder', '~> 2.5'
 #Forms made easy for Rails! It's tied to a simple DSL
 gem 'simple_form'
 
+gem 'sprockets', '~> 3.6.3'
+
 #Bootstrap-generators provides Twitter Bootstrap generators for Rails
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+#Flexible authentication solution for Rails with Warden
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
