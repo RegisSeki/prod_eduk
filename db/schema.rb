@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20161129182151) do
 
-  create_table "sectors", force: :cascade do |t|
+  create_table "sectors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "name",                   default: "", null: false
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20161129182151) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "sectors_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["sectors_id"], name: "index_users_on_sectors_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["sectors_id"], name: "index_users_on_sectors_id", using: :btree
   end
 
+  add_foreign_key "users", "sectors", column: "sectors_id"
 end
