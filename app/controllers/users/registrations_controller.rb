@@ -9,7 +9,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    user = User.new
+    user = User.create(permited_params)   
     super
+  end
+
+  private
+
+  def permited_params
+    params.require(:user).permit(:name, :sector_id, :email, :password, :password_confirmation)
   end
 
   # GET /resource/edit
