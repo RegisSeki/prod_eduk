@@ -51,11 +51,13 @@
             <li><%= link_to "Setor", "/sectors"  %></li>
             <li><%= link_to "Categoria", "/categories"  %></li>
             <li><%= link_to "Autor", "/authors"  %></li>
+            <li><%= link_to "Curso", "/courses"  %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= "Bem vindo #{current_user.name}" %></li>
               <li><%= link_to "Sign off", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to "Edit User", edit_user_registration_path %></li>
             <% else %>
               <li><%= link_to "Sign in", new_user_session_path %></li>
             <% end %>

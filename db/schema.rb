@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202160630) do
+ActiveRecord::Schema.define(version: 20161205123941) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -24,6 +24,33 @@ ActiveRecord::Schema.define(version: 20161202160630) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "course_id"
+    t.string   "name"
+    t.integer  "parts"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_hour"
+    t.time     "end_time"
+    t.string   "livestream_link"
+    t.string   "amazon_link"
+    t.string   "studio"
+    t.integer  "author_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["author_id"], name: "index_courses_on_author_id", using: :btree
+  end
+
+  create_table "memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.string   "kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_memberships_on_course_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
   end
 
   create_table "sectors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -53,5 +80,8 @@ ActiveRecord::Schema.define(version: 20161202160630) do
   end
 
   add_foreign_key "authors", "categories"
+  add_foreign_key "courses", "authors"
+  add_foreign_key "memberships", "courses"
+  add_foreign_key "memberships", "users"
   add_foreign_key "users", "sectors"
 end

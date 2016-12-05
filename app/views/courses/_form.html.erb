@@ -1,0 +1,33 @@
+<%= simple_form_for @course, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :course_id %>
+  <%#= error_span(@course[:course_id]) %>
+  <%= f.input :name %>
+  <%#= error_span(@course[:name]) %>
+  <%= f.input :parts %>
+  <%#= error_span(@course[:parts]) %>
+  <%= f.input :start_date %>
+  <%#= error_span(@course[:start_date]) %>
+  <%= f.input :end_date %>
+  <%#= error_span(@course[:end_date]) %>
+  <%= f.input :start_hour %>
+  <%#= error_span(@course[:start_hour]) %>
+  <%= f.input :end_time %>
+  <%#= error_span(@course[:end_time]) %>
+  <%= f.input :livestream_link %>
+  <%#= error_span(@course[:livestream_link]) %>
+  <%= f.input :amazon_link %>
+  <%#= error_span(@course[:amazon_link]) %>
+  <%= f.input :studio %>
+  <%#= error_span(@course[:studio]) %>
+  <%= f.association :author %>
+  <%#= error_span(@course[:author_id]) %>
+
+  <%= f.simple_fields_for :memberships do |membership| %>
+    <%= membership.user_id %>
+    <%= membership.kind %>
+  <% end %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                courses_path, :class => 'btn btn-default' %>
+<% end %>
